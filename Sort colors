@@ -1,0 +1,90 @@
+#approach 1        --> T.C=O(2N)
+
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        //   sort(nums.begin(),nums.end());
+         int zerocnt=0;
+         int onecnt=0;
+         int twocnt=0;
+        for(int i=0;i<nums.size();i++)
+        {
+          if(nums[i]==0)
+           zerocnt++;
+          else if(nums[i]==1)
+           onecnt++;
+          else
+             twocnt++; 
+        }
+
+        for(int i=0;i<nums.size();i++)
+        {
+           if(zerocnt>0)
+            { nums[i]=0; 
+             zerocnt--;}
+           else if(onecnt>0)
+           {  nums[i]=1;
+              onecnt--;}
+           else
+             nums[i]=2; twocnt--;    
+        }
+            
+              }
+};
+
+#approach 2 (Dutch National Flag Alg)    --> T.C = O(N)
+
+
+
+
+AMAN KUMAR GUPTA
+AMAN KUMAR GUPTA
+Jun 20, 2023 12:37
+Details
+Solution
+C++
+Runtime
+0 ms
+Beats
+100%
+Memory
+8.2 MB
+Beats
+83.98%
+Click the distribution chart to view more details
+Notes
+Write your notes here
+Related Tags
+Select tags
+0/5
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        //   sort(nums.begin(),nums.end());
+          int low=0;
+          int mid=0;
+          int high=nums.size()-1;
+
+         while(mid<=high)
+          {
+              // nums[mid]==0
+              if(nums[mid]==0)
+              { 
+                swap(nums[mid],nums[low]);
+                mid++;
+                low++;
+               }
+               else if(nums[mid]==1)  //nums[mid]==1
+               {
+                   mid++;
+               }
+               else                  // nums[mid]==2
+               {
+                   swap(nums[mid],nums[high]);
+                   high--;
+
+               }
+          }
+            
+              }
+};
