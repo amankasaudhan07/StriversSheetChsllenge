@@ -1,0 +1,74 @@
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+        map<int,int>mp;
+        vector<int>ans;
+        int n=nums.size();
+        for(int i=0;i<n;i++)
+        {
+           mp[nums[i]]++;
+        }
+       for(auto i:mp)
+       {
+           if(i.second>n/3)
+             ans.push_back(i.first);
+
+           if(ans.size()==2)
+            break;  
+       }
+       return ans;
+    }
+};
+
+
+
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+       int el1=INT_MIN;
+       int el2=INT_MIN;
+       int cnt1=0;
+       int cnt2=0;
+
+       for(int i=0;i<nums.size();i++)
+       {
+         if(cnt1==0&&el2!=nums[i])
+         {
+           cnt1++;
+           el1=nums[i];
+         }
+         else if(cnt2==0&&el1!=nums[i])
+         { 
+           cnt2++;
+           el2=nums[i];
+         }
+         else if(nums[i]==el1)
+           cnt1++;
+         else if(nums[i]==el2)
+           cnt2++;
+         else
+          {
+            cnt1--;
+            cnt2--; 
+          }    
+       }
+
+       vector<int>ans;
+       cnt1=0;
+       cnt2=0;
+        for(int i=0;i<nums.size();i++)
+        {
+           if(el1==nums[i])
+             cnt1++;
+           if(el2==nums[i])
+             cnt2++;  
+        }
+        
+        if(cnt1>nums.size()/3) 
+           ans.push_back(el1);
+        if(cnt2>nums.size()/3)
+           ans.push_back(el2);   
+
+       return ans;
+    }
+};
