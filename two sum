@@ -1,0 +1,39 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+      vector<int> ans;
+      for(int i=0;i<nums.size() -1 ;i++){
+          for(int j=i+1; j<nums.size() ; j++){
+              if(nums[i] + nums[j] == target){
+                  ans.push_back(i);
+                  ans.push_back(j);
+              }
+            }
+        }
+        return ans;  
+    }
+};
+
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& arr, int s) {
+          
+        vector<int>ans;
+        map<int,int>mp;
+        for(int i=0;i<arr.size();i++)
+        {
+            int first=arr[i];
+            int need=s-arr[i];
+
+            if(mp.find(need)!=mp.end())
+              {
+                  ans.push_back(mp[need]);
+                  ans.push_back(i);
+                  return ans;
+              } 
+              mp[first]=i; 
+        }
+      return ans;  
+    }
+};
