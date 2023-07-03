@@ -1,0 +1,19 @@
+map<long long int,int>mp;
+     long long int sum=0;
+     int length=0;
+      for(int i=0;i<arr.size();i++)
+      {
+         sum+=arr[i];
+         if(sum==0)
+           length=max(length,i+1);
+         if(sum>0)
+         {
+           if(mp.find(sum-0)!=mp.end())
+           {
+              length=max(length,i-mp[sum-0]);
+           }
+         }
+        if(mp.find(sum-0)==mp.end())  
+            mp[sum]=i;
+      }
+      return length;
