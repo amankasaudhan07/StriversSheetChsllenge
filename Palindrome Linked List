@@ -1,0 +1,59 @@
+class Solution {
+public:
+    ListNode* findmid(ListNode* head)
+    {
+        ListNode* temp=head;
+        ListNode* slow=head;
+        ListNode* fast=head->next;
+
+        while(fast!=NULL&&fast->next!=NULL)
+        {
+            fast=fast->next->next;
+            
+             slow=slow->next; 
+             
+        }
+        return slow;
+    }
+    
+    ListNode* reverse(ListNode* head)
+    {
+        ListNode* curr=head;
+        ListNode* pre=NULL;
+        ListNode* farward;
+
+        while(curr!=NULL)
+        {
+            farward=curr->next;
+            curr->next=pre;
+            pre=curr;
+            curr=farward;
+            
+        }
+        return pre;
+    }
+
+    bool isPalindrome(ListNode* head) {
+       if(head==NULL||head->next==NULL)
+        return true;
+
+       ListNode* mid=findmid(head); 
+       ListNode* temp=mid->next;
+         mid->next=reverse(temp);
+
+       ListNode* head1=head;
+       ListNode* head2=mid->next;
+
+       while(head2!=NULL)
+       {
+            if(head1->val!=head2->val)
+             return false;
+
+            head1=head1->next; 
+            head2=head2->next; 
+       }
+
+       return true;
+
+    }
+};
