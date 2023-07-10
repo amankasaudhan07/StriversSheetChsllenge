@@ -1,0 +1,74 @@
+class Solution {
+public:
+    int trap(vector<int>& height) {
+       int n=height.size();
+       vector<int>prefixsum(n,0);
+       vector<int>sufixsum(n,0);
+        
+    int maxi=0;
+       for(int i=0;i<n;i++)
+       {
+           prefixsum[i]=max(maxi,height[i]);
+           if(height[i]>maxi)
+            maxi=height[i];
+       }
+
+        maxi=0;
+       for(int i=n-1;i>0;i--)
+       {
+          sufixsum[i]=max(maxi,height[i]);
+           if(height[i]>maxi)
+            maxi=height[i];
+       }
+       
+       long long traped=0;
+       for(int i=0;i<n;i++)
+       {  
+          if(min(prefixsum[i],sufixsum[i])>height[i])
+          traped+=(min(prefixsum[i],sufixsum[i])-height[i]);
+       }
+        
+        return traped;
+    }
+};
+
+
+
+---optimal aproach ----
+
+
+class Solution {
+public:
+    int trap(vector<int>& height) {
+       int n=height.size();
+       int left=0;
+       int right=n-1;
+       int maxleft=0; 
+       int maxright=0; 
+       int res=0;
+
+       while(left<=right)
+       {
+         if(height[left]<=height[right])
+         {  
+
+            if(height[left]>=maxleft)
+            maxleft=height[left];
+            else
+               res+=maxleft-height[left];
+
+          left++; 
+         } 
+         else
+         {
+            if(height[right]>=maxright)
+            maxright=height[right];
+            else
+               res+=maxright-height[right];
+
+          right--; 
+         } 
+       }
+       return res;  
+    }
+};
