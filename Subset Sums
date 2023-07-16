@@ -1,0 +1,26 @@
+class Solution
+{
+public:
+    void solve(vector<int>&ans,vector<int> &arr,int index,int sum)
+    {
+        if(index==arr.size())
+       {  
+           ans.push_back(sum);
+          return;
+         }
+         
+       solve(ans,arr,index+1,sum+arr[index]);
+       solve(ans,arr,index+1,sum);
+       
+      
+    }
+    vector<int> subsetSums(vector<int> arr, int N)
+    {
+        // Write Your Code here
+        vector<int>ans;
+        solve(ans,arr,0,0);
+         
+        sort(ans.begin(),ans.end()); 
+        return ans;
+    }
+};
