@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+bool ispossiblesoln(vector<int> time,int n, int m,long long mid)
+{
+	long long pagecnt=0;
+	int daycnt=1;
+	for(int i=0;i<m;i++)
+	{
+		if(pagecnt+time[i]<=mid)
+		{
+			pagecnt+=time[i];
+		}
+		else
+		{
+			daycnt++;
+			if(daycnt>n||time[i]>mid)
+			 return false;
+
+			pagecnt=0;
+			pagecnt=time[i]; 
+		}
+		
+	}
+	return true;
+} 
+
+long long ayushGivesNinjatest(int n, int m, vector<int> time) 
+{	
+	// Write your code here.
+	long long start=0;
+	long long sum=0;
+	for(int i=0;i<m;i++)
+	 sum+=time[i];
+
+	long long end=sum;
+	long long mid=start+(end-start)/2;
+    long long ans=-1;
+	while(start<=end)
+	{
+		if(ispossiblesoln(time,n,m,mid))
+		{   
+			ans=mid;
+			end=mid-1;
+		}
+		else
+		 {
+			 start=mid+1;
+		 }
+      
+	   mid=start+(end-start)/2;
+	} 
+
+    return ans;	 
+}
