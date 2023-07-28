@@ -1,0 +1,29 @@
+class MyStack {
+     int *arr;
+     int tops;
+public:
+    MyStack() {
+        arr = new int[10000000];
+        this->tops=-1; 
+    }
+    
+    void push(int x) {
+        arr[++tops]=x; 
+    }
+    
+    int pop() {
+        tops--;
+        return arr[tops+1]; 
+    }
+    
+    int top() {
+        if(tops<0)
+         return -1;
+        else
+         return arr[tops]; 
+    }
+    
+    bool empty() {
+        return (tops==-1);
+    }
+};
