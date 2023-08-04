@@ -1,0 +1,21 @@
+void lv(Node *root,vector<int>&ans,int lvl)
+{
+    if(root==NULL)
+     return;
+    
+    if(ans.size()==lvl) 
+    ans.push_back(root->data);
+    
+   
+     lv(root->left,ans,lvl+1);
+   
+     lv(root->right,ans,lvl+1);
+     
+}
+vector<int> leftView(Node *root)
+{
+   // Your code here
+   vector<int>ans;
+   lv(root,ans,0);
+   return ans;
+}
